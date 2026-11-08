@@ -1,4 +1,4 @@
-variable "subscription_id" {
+variable "TF_VAR_SUBSCRIPTION_ID" {
   description = "The subscription ID for the resources"
   type        = string
 }

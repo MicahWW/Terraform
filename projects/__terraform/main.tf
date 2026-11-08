@@ -46,6 +46,6 @@ resource "azurerm_storage_container" "state" {
 resource "azurerm_role_assignment" "sa_state_contributor" {
   for_each           = toset(var.tf_state_operator_principal_ids)
   principal_id       = each.value
-  role_definition_id = "/subscriptions/${var.subscription_id}/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe" # Storage Blob Data Contributor
+  role_definition_id = "/subscriptions/${var.TF_VAR_SUBSCRIPTION_ID}/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe" # Storage Blob Data Contributor
   scope              = azurerm_storage_account.sa_state.id
 }
