@@ -49,3 +49,11 @@ resource "azurerm_role_assignment" "sa_state_contributor" {
   role_definition_id = "/subscriptions/${var.TF_VAR_SUBSCRIPTION_ID}/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe" # Storage Blob Data Contributor
   scope              = azurerm_storage_account.sa_state.id
 }
+
+
+resource "azurerm_management_lock" "lock" {
+  name       = "terraform-state-lock"
+  scope      = azurerm_resource_group.rg.id
+  lock_level = "CanNotDelete"
+  notes      = "Lock for Terraform state to ensure the rg or it's storage account cannot be deleted"
+}
