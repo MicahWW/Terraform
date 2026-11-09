@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "rg" {
-  name     = var.tf_state_resource_group_name
+  name     = var.TF_VAR_STATE_RG_NAME
   location = var.tf_state_location
 }
 
 resource "azurerm_storage_account" "sa_state" {
-  name                = var.tf_state_storage_account_name
+  name                = var.TF_VAR_STATE_STORAGE_ACCOUNT_NAME
   resource_group_name = azurerm_resource_group.rg.name     # Setup dependency for creation order
   location            = azurerm_resource_group.rg.location # Setup dependency for creation order
 
@@ -36,7 +36,7 @@ resource "azurerm_storage_account" "sa_state" {
 
 
 resource "azurerm_storage_container" "state" {
-  name                  = var.storage_account_container
+  name                  = var.TF_VAR_STATE_STORAGE_ACCOUNT_CONTAINER
   storage_account_id    = azurerm_storage_account.sa_state.id
   container_access_type = "private"
 }
